@@ -4,20 +4,22 @@ Api resti ful para servir datos de tablaturas:
 
 http://apitabs.creacodigos.com/
 
-## GET
+## Basada en SLIM 
+
+### GET
 
 `http://apitabs.creacodigos.com/api.php/partituras`
 
 `http://apitabs.creacodigos.com/api.php/partitura/id`
 
-## POST
+### POST
 
 `http://apitabs.creacodigos.com/api.php/partitura`
 
-## PUT
+### PUT
 
 `http://apitabs.creacodigos.com/api.php/partitura/id`
 
-## DELETE
+### DELETE
 
 `http://apitabs.creacodigos.com/api.php/partitura/id`
