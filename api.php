@@ -5,10 +5,14 @@ $app = new \Slim\Slim();
 
 $db = new mysqli('serverBD','usuarioBD','contraseñaBD','nombreBD');
 
+    // SIN set_charset() no muestra JSON
+$db->set_charset("utf8");
+
 // MOSTRAR TODOS LOS REGISTROS
 $app->get("/partituras", function() use ($db,$app){
 
     $select = $db->query('SELECT * FROM partituras ORDER BY id DESC')->fetch_all(MYSQLI_ASSOC);
+    //var_dump($select);
     echo json_encode($select);
 });
 
@@ -16,16 +20,9 @@ $app->get("/partituras", function() use ($db,$app){
 $app->get("/partitura/:id", function($id) use ($db,$app){
         
     $select = $db->query("SELECT * FROM partituras WHERE id = '$id'")->fetch_all(MYSQLI_ASSOC);
+    //var_dump($select);
     echo json_encode($select);
     
-    /*$update = $db->prepare("SELECT * FROM partituras WHERE id = ?");
-    $update->bind_param('i', $id);
-        $id = $id;
-
-    $update->execute();
-    $filas = $update->affected_rows;
-    $update->close();
-    echo json_encode($filas);*/
 })->conditions(array(
     // condicional con expresiones regulares
     'id' => '[\d]*'
@@ -78,6 +75,7 @@ $app->put("/partitura/:id", function($id) use ($db,$app){
 // BORRAR REGISTRO POR ID
 $app->delete("/partitura/:id", function($id) use ($db,$app){
         
+    /*
     $update = $db->prepare("DELETE FROM partituras WHERE id = ?");
     $update->bind_param('i', $id);
         $id = $id;
@@ -86,6 +84,7 @@ $app->delete("/partitura/:id", function($id) use ($db,$app){
     $filas = $update->affected_rows;
     $update->close();
     echo json_encode($filas);
+    */
 })->conditions(array(
     // condicional con expresiones regulares
     'id' => '[\d]*'
